@@ -12,19 +12,19 @@ public class OcenaPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="Korisnik_idKorisnik", insertable=false, updatable=false)
-	private int korisnik_idKorisnik;
+	@Column(name="Korisnik_username", insertable=false, updatable=false)
+	private String korisnik_username;
 
 	@Column(name="Proizvod_idProizvod", insertable=false, updatable=false)
 	private int proizvod_idProizvod;
 
 	public OcenaPK() {
 	}
-	public int getKorisnik_idKorisnik() {
-		return this.korisnik_idKorisnik;
+	public String getKorisnik_username() {
+		return this.korisnik_username;
 	}
-	public void setKorisnik_idKorisnik(int korisnik_idKorisnik) {
-		this.korisnik_idKorisnik = korisnik_idKorisnik;
+	public void setKorisnik_username(String korisnik_username) {
+		this.korisnik_username = korisnik_username;
 	}
 	public int getProizvod_idProizvod() {
 		return this.proizvod_idProizvod;
@@ -42,14 +42,14 @@ public class OcenaPK implements Serializable {
 		}
 		OcenaPK castOther = (OcenaPK)other;
 		return 
-			(this.korisnik_idKorisnik == castOther.korisnik_idKorisnik)
+			this.korisnik_username.equals(castOther.korisnik_username)
 			&& (this.proizvod_idProizvod == castOther.proizvod_idProizvod);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.korisnik_idKorisnik;
+		hash = hash * prime + this.korisnik_username.hashCode();
 		hash = hash * prime + this.proizvod_idProizvod;
 		
 		return hash;

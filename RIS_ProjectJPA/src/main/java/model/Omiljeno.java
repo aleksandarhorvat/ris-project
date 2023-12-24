@@ -23,7 +23,7 @@ public class Omiljeno implements Serializable {
 
 	//bi-directional many-to-one association to Korisnik
 	@ManyToOne
-	@JoinColumn(name="Korisnik_idKorisnik")
+	@JoinColumn(name="Korisnik_username")
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Proizvod

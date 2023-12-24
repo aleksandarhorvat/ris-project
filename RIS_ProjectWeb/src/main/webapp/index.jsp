@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Pocetna strana</title>
 </head>
 <body>
-	<h1>Hello</h1>
+	<h1>Dobrodosao!</h1>
+	<a href="logIn.jsp">Uloguj se</a><br>
+	<a href="signIn.jsp"> Napravi nalog</a><br>
+	<a href="pregledProizvoda.jsp">Nastavi bez naloga</a>
 </body>
 </html>

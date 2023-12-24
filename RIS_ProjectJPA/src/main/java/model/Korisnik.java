@@ -16,7 +16,7 @@ public class Korisnik implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idKorisnik;
+	private String username;
 
 	private String adresa;
 
@@ -25,8 +25,6 @@ public class Korisnik implements Serializable {
 	private String password;
 
 	private String prezime;
-
-	private String username;
 
 	//bi-directional many-to-one association to Kartica
 	@OneToMany(mappedBy="korisnik")
@@ -48,12 +46,12 @@ public class Korisnik implements Serializable {
 	public Korisnik() {
 	}
 
-	public int getIdKorisnik() {
-		return this.idKorisnik;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setIdKorisnik(int idKorisnik) {
-		this.idKorisnik = idKorisnik;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getAdresa() {
@@ -86,14 +84,6 @@ public class Korisnik implements Serializable {
 
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public List<Kartica> getKarticas() {

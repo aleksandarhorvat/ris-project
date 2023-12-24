@@ -20,8 +20,8 @@ public class KarticaPK implements Serializable {
 	@Column(name="CVV")
 	private int cvv;
 
-	@Column(name="Korisnik_idKorisnik", insertable=false, updatable=false)
-	private int korisnik_idKorisnik;
+	@Column(name="Korisnik_username", insertable=false, updatable=false)
+	private String korisnik_username;
 
 	public KarticaPK() {
 	}
@@ -43,11 +43,11 @@ public class KarticaPK implements Serializable {
 	public void setCvv(int cvv) {
 		this.cvv = cvv;
 	}
-	public int getKorisnik_idKorisnik() {
-		return this.korisnik_idKorisnik;
+	public String getKorisnik_username() {
+		return this.korisnik_username;
 	}
-	public void setKorisnik_idKorisnik(int korisnik_idKorisnik) {
-		this.korisnik_idKorisnik = korisnik_idKorisnik;
+	public void setKorisnik_username(String korisnik_username) {
+		this.korisnik_username = korisnik_username;
 	}
 
 	public boolean equals(Object other) {
@@ -62,7 +62,7 @@ public class KarticaPK implements Serializable {
 			(this.brojKartice == castOther.brojKartice)
 			&& this.datumIsticanja.equals(castOther.datumIsticanja)
 			&& (this.cvv == castOther.cvv)
-			&& (this.korisnik_idKorisnik == castOther.korisnik_idKorisnik);
+			&& this.korisnik_username.equals(castOther.korisnik_username);
 	}
 
 	public int hashCode() {
@@ -71,7 +71,7 @@ public class KarticaPK implements Serializable {
 		hash = hash * prime + this.brojKartice;
 		hash = hash * prime + this.datumIsticanja.hashCode();
 		hash = hash * prime + this.cvv;
-		hash = hash * prime + this.korisnik_idKorisnik;
+		hash = hash * prime + this.korisnik_username.hashCode();
 		
 		return hash;
 	}
