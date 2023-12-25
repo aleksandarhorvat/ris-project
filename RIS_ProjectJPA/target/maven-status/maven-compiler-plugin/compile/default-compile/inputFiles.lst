@@ -1,0 +1,13 @@
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Kartica.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/KarticaPK.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Kategorija.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/KategorijeKorisnika.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Korisnik.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Ocena.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/OcenaPK.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Omiljeno.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/OmiljenoPK.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Popust.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Proizvod.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Proizvodjac.java
+/home/aleksandarhorvat/git/ris-project/RIS_ProjectJPA/src/main/java/model/Uloga.java

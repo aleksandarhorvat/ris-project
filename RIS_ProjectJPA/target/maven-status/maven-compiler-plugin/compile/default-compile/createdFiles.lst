@@ -1,0 +1,13 @@
+model/Ocena.class
+model/KategorijeKorisnika.class
+model/Proizvod.class
+model/Korisnik.class
+model/Kartica.class
+model/Proizvodjac.class
+model/Kategorija.class
+model/Uloga.class
+model/OcenaPK.class
+model/KarticaPK.class
+model/Popust.class
+model/Omiljeno.class
+model/OmiljenoPK.class

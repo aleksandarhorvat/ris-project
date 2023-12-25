@@ -10,6 +10,6 @@
 	<h1>Dobrodosao!</h1>
 	<a href="logIn.jsp">Uloguj se</a><br>
 	<a href="signIn.jsp"> Napravi nalog</a><br>
-	<a href="pregledProizvoda.jsp">Nastavi bez naloga</a>
+	<a href="/Prodavnica/proizvod/getProizvodi">Nastavi bez naloga</a>
 </body>
 </html>
