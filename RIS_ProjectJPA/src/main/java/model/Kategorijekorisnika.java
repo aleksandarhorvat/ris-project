@@ -6,12 +6,12 @@ import java.util.List;
 
 
 /**
- * The persistent class for the KategorijeKorisnika database table.
+ * The persistent class for the kategorijekorisnika database table.
  * 
  */
 @Entity
-@NamedQuery(name="KategorijeKorisnika.findAll", query="SELECT k FROM KategorijeKorisnika k")
-public class KategorijeKorisnika implements Serializable {
+@NamedQuery(name="Kategorijekorisnika.findAll", query="SELECT k FROM Kategorijekorisnika k")
+public class Kategorijekorisnika implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -21,10 +21,10 @@ public class KategorijeKorisnika implements Serializable {
 	private String naziv;
 
 	//bi-directional many-to-one association to Omiljeno
-	@OneToMany(mappedBy="kategorijeKorisnika")
+	@OneToMany(mappedBy="kategorijekorisnika")
 	private List<Omiljeno> omiljenos;
 
-	public KategorijeKorisnika() {
+	public Kategorijekorisnika() {
 	}
 
 	public int getIdKategorijeKorisnika() {
@@ -53,14 +53,14 @@ public class KategorijeKorisnika implements Serializable {
 
 	public Omiljeno addOmiljeno(Omiljeno omiljeno) {
 		getOmiljenos().add(omiljeno);
-		omiljeno.setKategorijeKorisnika(this);
+		omiljeno.setKategorijekorisnika(this);
 
 		return omiljeno;
 	}
 
 	public Omiljeno removeOmiljeno(Omiljeno omiljeno) {
 		getOmiljenos().remove(omiljeno);
-		omiljeno.setKategorijeKorisnika(null);
+		omiljeno.setKategorijekorisnika(null);
 
 		return omiljeno;
 	}

@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Korisnik database table.
+ * The persistent class for the korisnik database table.
  * 
  */
 @Entity
@@ -32,7 +32,6 @@ public class Korisnik implements Serializable {
 
 	//bi-directional many-to-one association to Uloga
 	@ManyToOne
-	@JoinColumn(name="Uloga_idUloga")
 	private Uloga uloga;
 
 	//bi-directional many-to-one association to Ocena
@@ -42,6 +41,10 @@ public class Korisnik implements Serializable {
 	//bi-directional many-to-one association to Omiljeno
 	@OneToMany(mappedBy="korisnik")
 	private List<Omiljeno> omiljenos;
+
+	//bi-directional one-to-one association to Porudzbina
+	@OneToOne(mappedBy="korisnik")
+	private Porudzbina porudzbina;
 
 	public Korisnik() {
 	}
@@ -158,6 +161,14 @@ public class Korisnik implements Serializable {
 		omiljeno.setKorisnik(null);
 
 		return omiljeno;
+	}
+
+	public Porudzbina getPorudzbina() {
+		return this.porudzbina;
+	}
+
+	public void setPorudzbina(Porudzbina porudzbina) {
+		this.porudzbina = porudzbina;
 	}
 
 }

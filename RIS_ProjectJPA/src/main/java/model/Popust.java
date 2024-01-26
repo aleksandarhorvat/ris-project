@@ -8,7 +8,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Popust database table.
+ * The persistent class for the popust database table.
  * 
  */
 @Entity

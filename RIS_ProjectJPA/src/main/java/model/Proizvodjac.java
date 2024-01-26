@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Proizvodjac database table.
+ * The persistent class for the proizvodjac database table.
  * 
  */
 @Entity

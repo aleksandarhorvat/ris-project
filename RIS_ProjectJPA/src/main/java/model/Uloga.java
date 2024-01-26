@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Uloga database table.
+ * The persistent class for the uloga database table.
  * 
  */
 @Entity

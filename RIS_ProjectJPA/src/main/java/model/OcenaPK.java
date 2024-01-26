@@ -4,7 +4,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 
 /**
- * The primary key class for the Ocena database table.
+ * The primary key class for the ocena database table.
  * 
  */
 @Embeddable
@@ -12,10 +12,10 @@ public class OcenaPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="Korisnik_username", insertable=false, updatable=false)
+	@Column(insertable=false, updatable=false)
 	private String korisnik_username;
 
-	@Column(name="Proizvod_idProizvod", insertable=false, updatable=false)
+	@Column(insertable=false, updatable=false)
 	private int proizvod_idProizvod;
 
 	public OcenaPK() {

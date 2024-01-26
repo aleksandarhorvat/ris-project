@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 /**
- * The persistent class for the Kartica database table.
+ * The persistent class for the kartica database table.
  * 
  */
 @Entity
@@ -18,7 +18,6 @@ public class Kartica implements Serializable {
 
 	//bi-directional many-to-one association to Korisnik
 	@ManyToOne
-	@JoinColumn(name="Korisnik_username")
 	private Korisnik korisnik;
 
 	public Kartica() {

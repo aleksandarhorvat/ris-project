@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 /**
- * The persistent class for the Omiljeno database table.
+ * The persistent class for the omiljeno database table.
  * 
  */
 @Entity
@@ -16,19 +16,16 @@ public class Omiljeno implements Serializable {
 	@EmbeddedId
 	private OmiljenoPK id;
 
-	//bi-directional many-to-one association to KategorijeKorisnika
+	//bi-directional many-to-one association to Kategorijekorisnika
 	@ManyToOne
-	@JoinColumn(name="KategorijeKorisnika_idKategorijeKorisnika")
-	private KategorijeKorisnika kategorijeKorisnika;
+	private Kategorijekorisnika kategorijekorisnika;
 
 	//bi-directional many-to-one association to Korisnik
 	@ManyToOne
-	@JoinColumn(name="Korisnik_username")
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Proizvod
 	@ManyToOne
-	@JoinColumn(name="Proizvod_idProizvod")
 	private Proizvod proizvod;
 
 	public Omiljeno() {
@@ -42,12 +39,12 @@ public class Omiljeno implements Serializable {
 		this.id = id;
 	}
 
-	public KategorijeKorisnika getKategorijeKorisnika() {
-		return this.kategorijeKorisnika;
+	public Kategorijekorisnika getKategorijekorisnika() {
+		return this.kategorijekorisnika;
 	}
 
-	public void setKategorijeKorisnika(KategorijeKorisnika kategorijeKorisnika) {
-		this.kategorijeKorisnika = kategorijeKorisnika;
+	public void setKategorijekorisnika(Kategorijekorisnika kategorijekorisnika) {
+		this.kategorijekorisnika = kategorijekorisnika;
 	}
 
 	public Korisnik getKorisnik() {

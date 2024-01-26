@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 /**
- * The persistent class for the Ocena database table.
+ * The persistent class for the ocena database table.
  * 
  */
 @Entity
@@ -20,12 +20,10 @@ public class Ocena implements Serializable {
 
 	//bi-directional many-to-one association to Korisnik
 	@ManyToOne
-	@JoinColumn(name="Korisnik_username")
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Proizvod
 	@ManyToOne
-	@JoinColumn(name="Proizvod_idProizvod")
 	private Proizvod proizvod;
 
 	public Ocena() {

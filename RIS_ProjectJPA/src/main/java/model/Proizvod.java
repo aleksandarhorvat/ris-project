@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Proizvod database table.
+ * The persistent class for the proizvod database table.
  * 
  */
 @Entity
@@ -37,17 +37,27 @@ public class Proizvod implements Serializable {
 
 	//bi-directional many-to-one association to Kategorija
 	@ManyToOne
-	@JoinColumn(name="Kategorija_idKategorija")
 	private Kategorija kategorija;
 
 	//bi-directional many-to-one association to Popust
 	@ManyToOne
-	@JoinColumn(name="Popust_idPopust")
 	private Popust popust;
+
+	//bi-directional many-to-many association to Porudzbina
+	@ManyToMany
+	@JoinTable(
+		name="porudzbina_has_proizvod"
+		, joinColumns={
+			@JoinColumn(name="Proizvod_idProizvod")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Porudzbina_Korisnik_username")
+			}
+		)
+	private List<Porudzbina> porudzbinas;
 
 	//bi-directional many-to-one association to Proizvodjac
 	@ManyToOne
-	@JoinColumn(name="Proizvodjac_idProizvodjac")
 	private Proizvodjac proizvodjac;
 
 	public Proizvod() {
@@ -151,6 +161,14 @@ public class Proizvod implements Serializable {
 
 	public void setPopust(Popust popust) {
 		this.popust = popust;
+	}
+
+	public List<Porudzbina> getPorudzbinas() {
+		return this.porudzbinas;
+	}
+
+	public void setPorudzbinas(List<Porudzbina> porudzbinas) {
+		this.porudzbinas = porudzbinas;
 	}
 
 	public Proizvodjac getProizvodjac() {
