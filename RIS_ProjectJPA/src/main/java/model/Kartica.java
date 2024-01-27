@@ -17,7 +17,8 @@ public class Kartica implements Serializable {
 	private KarticaPK id;
 
 	//bi-directional many-to-one association to Korisnik
-	@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "korisnik_username", insertable = false, updatable = false)
 	private Korisnik korisnik;
 
 	public Kartica() {

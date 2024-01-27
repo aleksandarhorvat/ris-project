@@ -8,8 +8,8 @@
 </head>
 <body>
 	<h1>Dobrodosao!</h1>
-	<a href="logIn.jsp">Uloguj se</a><br>
-	<a href="signIn.jsp"> Napravi nalog</a><br>
+	<a href="/Prodavnica/login/getLoginPage">Uloguj se</a><br>
+	<a href="/Prodavnica/signin/getSigninPage"> Napravi nalog</a><br>
 	<a href="/Prodavnica/proizvod/getProizvodi">Nastavi bez naloga</a>
 </body>
 </html>

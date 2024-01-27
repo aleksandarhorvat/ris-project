@@ -63,6 +63,11 @@
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>6.2.1</version>
+		</dependency>
+		<dependency>
 			<groupId>RIS_ProjectJPA</groupId>
 			<artifactId>RIS_ProjectJPA</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
