@@ -26,7 +26,7 @@ public class Popust implements Serializable {
 	private BigDecimal procenat;
 
 	//bi-directional many-to-one association to Proizvod
-	@OneToMany(mappedBy="popust")
+	@OneToMany(mappedBy="popust", fetch = FetchType.EAGER)
 	private List<Proizvod> proizvods;
 
 	public Popust() {

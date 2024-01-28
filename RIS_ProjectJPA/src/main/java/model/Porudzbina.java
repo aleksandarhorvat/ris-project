@@ -32,9 +32,9 @@ public class Porudzbina implements Serializable {
 	@OneToOne
 	private Korisnik korisnik;
 
-	//bi-directional many-to-many association to Proizvod
-	@ManyToMany(mappedBy="porudzbinas")
-	private List<Proizvod> proizvods;
+	//bi-directional many-to-one association to PorudzbinaHasProizvod
+	@OneToMany(mappedBy="porudzbina", fetch = FetchType.EAGER)
+	private List<PorudzbinaHasProizvod> porudzbinaHasProizvods;
 
 	public Porudzbina() {
 	}
@@ -79,12 +79,26 @@ public class Porudzbina implements Serializable {
 		this.korisnik = korisnik;
 	}
 
-	public List<Proizvod> getProizvods() {
-		return this.proizvods;
+	public List<PorudzbinaHasProizvod> getPorudzbinaHasProizvods() {
+		return this.porudzbinaHasProizvods;
 	}
 
-	public void setProizvods(List<Proizvod> proizvods) {
-		this.proizvods = proizvods;
+	public void setPorudzbinaHasProizvods(List<PorudzbinaHasProizvod> porudzbinaHasProizvods) {
+		this.porudzbinaHasProizvods = porudzbinaHasProizvods;
+	}
+
+	public PorudzbinaHasProizvod addPorudzbinaHasProizvod(PorudzbinaHasProizvod porudzbinaHasProizvod) {
+		getPorudzbinaHasProizvods().add(porudzbinaHasProizvod);
+		porudzbinaHasProizvod.setPorudzbina(this);
+
+		return porudzbinaHasProizvod;
+	}
+
+	public PorudzbinaHasProizvod removePorudzbinaHasProizvod(PorudzbinaHasProizvod porudzbinaHasProizvod) {
+		getPorudzbinaHasProizvods().remove(porudzbinaHasProizvod);
+		porudzbinaHasProizvod.setPorudzbina(null);
+
+		return porudzbinaHasProizvod;
 	}
 
 }

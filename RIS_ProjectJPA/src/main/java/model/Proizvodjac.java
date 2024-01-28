@@ -21,7 +21,7 @@ public class Proizvodjac implements Serializable {
 	private String naziv;
 
 	//bi-directional many-to-one association to Proizvod
-	@OneToMany(mappedBy="proizvodjac")
+	@OneToMany(mappedBy="proizvodjac", fetch = FetchType.EAGER)
 	private List<Proizvod> proizvods;
 
 	public Proizvodjac() {

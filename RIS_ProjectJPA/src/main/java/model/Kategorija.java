@@ -21,7 +21,7 @@ public class Kategorija implements Serializable {
 	private String naziv;
 
 	//bi-directional many-to-one association to Proizvod
-	@OneToMany(mappedBy="kategorija")
+	@OneToMany(mappedBy="kategorija", fetch = FetchType.EAGER)
 	private List<Proizvod> proizvods;
 
 	public Kategorija() {

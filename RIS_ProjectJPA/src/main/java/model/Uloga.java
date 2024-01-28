@@ -21,7 +21,7 @@ public class Uloga implements Serializable {
 	private String naziv;
 
 	//bi-directional many-to-one association to Korisnik
-	@OneToMany(mappedBy="uloga")
+	@OneToMany(mappedBy="uloga", fetch = FetchType.EAGER)
 	private List<Korisnik> korisniks;
 
 	public Uloga() {

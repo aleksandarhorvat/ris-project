@@ -36,5 +36,10 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.30</version>
 		</dependency>
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>RIS_ProjectWeb</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

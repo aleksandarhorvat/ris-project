@@ -9,7 +9,7 @@
 <body>
 	<h1>Pocetna stranica za kupca</h1>
 	<a href="/Prodavnica/kartica/getKartica">Dodaj karticu</a><br>
-	<a href="/Prodavnica/">Pogledaj prozivode</a><br>
+	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pogledaj prozivode</a><br>
 	<a href="/Prodavnica/">Napravi kategoriju prozivoda</a><br>
 	<a href="/Prodavnica/">Pogledaj sadrzaj korpe</a><br>
 </body>

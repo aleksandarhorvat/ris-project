@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+
+import java.util.Base64;
 import java.util.List;
 
 
@@ -28,12 +30,16 @@ public class Proizvod implements Serializable {
 	private byte[] slika;
 
 	//bi-directional many-to-one association to Ocena
-	@OneToMany(mappedBy="proizvod")
+	@OneToMany(mappedBy="proizvod", fetch = FetchType.EAGER)
 	private List<Ocena> ocenas;
 
 	//bi-directional many-to-one association to Omiljeno
-	@OneToMany(mappedBy="proizvod")
+	@OneToMany(mappedBy="proizvod", fetch = FetchType.EAGER)
 	private List<Omiljeno> omiljenos;
+
+	//bi-directional many-to-one association to PorudzbinaHasProizvod
+	@OneToMany(mappedBy="proizvod", fetch = FetchType.EAGER)
+	private List<PorudzbinaHasProizvod> porudzbinaHasProizvods;
 
 	//bi-directional many-to-one association to Kategorija
 	@ManyToOne
@@ -42,19 +48,6 @@ public class Proizvod implements Serializable {
 	//bi-directional many-to-one association to Popust
 	@ManyToOne
 	private Popust popust;
-
-	//bi-directional many-to-many association to Porudzbina
-	@ManyToMany
-	@JoinTable(
-		name="porudzbina_has_proizvod"
-		, joinColumns={
-			@JoinColumn(name="Proizvod_idProizvod")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Porudzbina_Korisnik_username")
-			}
-		)
-	private List<Porudzbina> porudzbinas;
 
 	//bi-directional many-to-one association to Proizvodjac
 	@ManyToOne
@@ -103,6 +96,13 @@ public class Proizvod implements Serializable {
 		this.slika = slika;
 	}
 
+	public String getSlikaAsBase64() {
+	    if (this.slika != null && this.slika.length > 0) {
+	        return Base64.getEncoder().encodeToString(this.slika);
+	    }
+	    return null;
+	}
+	
 	public List<Ocena> getOcenas() {
 		return this.ocenas;
 	}
@@ -147,6 +147,28 @@ public class Proizvod implements Serializable {
 		return omiljeno;
 	}
 
+	public List<PorudzbinaHasProizvod> getPorudzbinaHasProizvods() {
+		return this.porudzbinaHasProizvods;
+	}
+
+	public void setPorudzbinaHasProizvods(List<PorudzbinaHasProizvod> porudzbinaHasProizvods) {
+		this.porudzbinaHasProizvods = porudzbinaHasProizvods;
+	}
+
+	public PorudzbinaHasProizvod addPorudzbinaHasProizvod(PorudzbinaHasProizvod porudzbinaHasProizvod) {
+		getPorudzbinaHasProizvods().add(porudzbinaHasProizvod);
+		porudzbinaHasProizvod.setProizvod(this);
+
+		return porudzbinaHasProizvod;
+	}
+
+	public PorudzbinaHasProizvod removePorudzbinaHasProizvod(PorudzbinaHasProizvod porudzbinaHasProizvod) {
+		getPorudzbinaHasProizvods().remove(porudzbinaHasProizvod);
+		porudzbinaHasProizvod.setProizvod(null);
+
+		return porudzbinaHasProizvod;
+	}
+
 	public Kategorija getKategorija() {
 		return this.kategorija;
 	}
@@ -161,14 +183,6 @@ public class Proizvod implements Serializable {
 
 	public void setPopust(Popust popust) {
 		this.popust = popust;
-	}
-
-	public List<Porudzbina> getPorudzbinas() {
-		return this.porudzbinas;
-	}
-
-	public void setPorudzbinas(List<Porudzbina> porudzbinas) {
-		this.porudzbinas = porudzbinas;
 	}
 
 	public Proizvodjac getProizvodjac() {

@@ -21,11 +21,13 @@ public class Omiljeno implements Serializable {
 	private Kategorijekorisnika kategorijekorisnika;
 
 	//bi-directional many-to-one association to Korisnik
-	@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "korisnik_username", insertable = false, updatable = false)
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Proizvod
-	@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "proizvod_idProizvod", insertable = false, updatable = false)
 	private Proizvod proizvod;
 
 	public Omiljeno() {

@@ -64,7 +64,7 @@ public class KarticaController {
 	        // Remove the extra korisnik_username value from the insert statement
 	        kar.save(k);
 	        
-	        trenutniKorisnik.setKartica(k);
+	        trenutniKorisnik.addKartica(k);
 	        kr.save(trenutniKorisnik);
 	        
 	        poruka += "Uspesno je sacuvana kartica! Username korisnika cija je kartica: " + k.getKorisnik().getUsername();
