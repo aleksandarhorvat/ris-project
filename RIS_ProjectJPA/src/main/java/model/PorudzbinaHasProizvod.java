@@ -1,7 +1,12 @@
 package model;
 
 import java.io.Serializable;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 
 /**
@@ -25,8 +30,10 @@ public class PorudzbinaHasProizvod implements Serializable {
 	private Porudzbina porudzbina;
 
 	//bi-directional many-to-one association to Proizvod
+//    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "proizvod_idProizvod", insertable = false, updatable = false)
+    @JoinColumn(name = "proizvod_idProizvod", insertable = false, updatable = false)//nullable = false
+    //@NotFound(action = NotFoundAction.IGNORE)
 	private Proizvod proizvod;
 
 	public PorudzbinaHasProizvod() {

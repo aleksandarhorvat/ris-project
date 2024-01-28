@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +19,6 @@ public class Porudzbina implements Serializable {
 
 	@Id
 	@Column(insertable=false, updatable=false)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String korisnik_username;
 
 	@Temporal(TemporalType.DATE)
@@ -30,13 +31,15 @@ public class Porudzbina implements Serializable {
 
 	//bi-directional one-to-one association to Korisnik
 	@OneToOne
+	@JoinColumn(name = "korisnik_username", insertable = false, updatable = false)
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to PorudzbinaHasProizvod
-	@OneToMany(mappedBy="porudzbina", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="porudzbina", fetch = FetchType.EAGER/*, cascade = {CascadeType.PERSIST, CascadeType.MERGE}*/)
 	private List<PorudzbinaHasProizvod> porudzbinaHasProizvods;
 
 	public Porudzbina() {
+		this.porudzbinaHasProizvods = new ArrayList<>();
 	}
 
 	public String getKorisnik_username() {

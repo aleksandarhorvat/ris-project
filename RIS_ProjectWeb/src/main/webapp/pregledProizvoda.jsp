@@ -13,7 +13,7 @@
 <body>
 	<h1>Dostupni proizvodi</h1><br>
 	<c:if test="${!empty proizvodi }">
-		<table border="1">
+		<table border="1" style="text-align: center;">
 			<tr>
 				<th>Slika prozivoda</th>
 				<th>Ime proizvoda</th>
@@ -34,6 +34,9 @@
 					</c:if>
 					<c:if test="${!empty p.popust}">
 						<th>${p.popust.procenat } %</th>
+					</c:if>
+					<c:if test="${empty p.popust}">
+						<th></th>
 					</c:if>
 				</tr>
 			</c:forEach>

@@ -44,7 +44,7 @@
     <form action="/Prodavnica/proizvod/savePodaci" method="post">
         Ocena: <input type="number" name="ocena"><br>
         Omiljen: <input type="checkbox" name=omlijen><br>
-        		 <input type="button" name=porudzbina><br>
+        Koliko primeraka zelite da kupite: <input type="number" value="0" name=kolicina><br>
         <input type="submit" value="Potvrdi">
     </form>
 </body>
