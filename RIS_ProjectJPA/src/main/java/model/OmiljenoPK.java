@@ -54,4 +54,9 @@ public class OmiljenoPK implements Serializable {
 		
 		return hash;
 	}
+	@Override
+	public String toString() {
+		return "OmiljenoPK [korisnik_username=" + korisnik_username + ", proizvod_idProizvod=" + proizvod_idProizvod
+				+ "]";
+	}
 }

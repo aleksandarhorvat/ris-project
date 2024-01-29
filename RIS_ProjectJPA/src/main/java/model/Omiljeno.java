@@ -65,4 +65,9 @@ public class Omiljeno implements Serializable {
 		this.proizvod = proizvod;
 	}
 
+	@Override
+	public String toString() {
+		return "Omiljeno [id=" + id + "]";
+	}
+	
 }

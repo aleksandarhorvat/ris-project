@@ -53,9 +53,9 @@ public class SigninController {
 		String poruka = "";
 		try {
 			Korisnik k = kr.save(korisnik);
-			poruka += "Uspešno je sačuvan korisnik! Username korisnika je: "+k.getUsername();
+			poruka += "Uspesno je sacuvan korisnik! Username korisnika je: "+k.getUsername();
 		} catch(Exception e) {
-			poruka += "Greška prilikom čuvanja korisnika!";
+			poruka += "Greska prilikom cuvanja korisnika!";
 		}
 		m.addAttribute("porukaKorisnik", poruka);
         return "signIn";
