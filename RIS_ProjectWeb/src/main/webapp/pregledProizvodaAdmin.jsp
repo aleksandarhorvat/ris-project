@@ -48,7 +48,7 @@
 					<td>Slika:</td>
 					<td><form:input type="file" path="slika" /></td>
 					<td>Trenutna vrednost: <img
-						src="data:image/jpeg;base64,${proizvod.slikaAsBase64}" alt="null" style="width: 200px;">
+						src="data:image/jpeg;base64,${proizvod.slikaAsBase64}" style="width: 200px;">
 					</td>
 				</tr>
 				<tr>
