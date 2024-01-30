@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.repositories.KategorijekorisnikaRepository;
 import com.example.demo.repositories.OmiljenoRepository;
@@ -45,11 +44,6 @@ public class KategorijaController {
 	@GetMapping("getDodajProizvodePage")
 	public String getDodajProizvodePage() {
 	    return "dodajProzivode";
-	}
-	
-	@ModelAttribute("kategorija")
-	public Kategorijekorisnika newKategorija() {
-		return new Kategorijekorisnika();
 	}
 	
 	@ModelAttribute("kategorije")
@@ -86,6 +80,8 @@ public class KategorijaController {
 				Kategorijekorisnika k = kr.save(kategorija);
 				poruka += "Uspesno je sacuvana kategorija sa nazivom: "+k.getNaziv();
 			}
+			else
+				throw new Exception();
 		} catch(Exception e) {
 			poruka += "Greska prilikom cuvanja kategorija!";
 		}
@@ -96,14 +92,21 @@ public class KategorijaController {
     @PostMapping("saveProizvode")
     public String saveProizvode(int[] idOmiljeni, Integer idKategorija, HttpServletRequest request) {
 	    Korisnik trenutniKorisnik = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
-    	for (Integer id : idOmiljeni) {
-    		OmiljenoPK ompk = new OmiljenoPK();
-    		ompk.setKorisnik_username(trenutniKorisnik.getUsername());
-    		ompk.setProizvod_idProizvod(id);
-    		Omiljeno o = om.getReferenceById(ompk);
-    		o.setKategorijekorisnika(kr.getReferenceById(idKategorija));
-    		om.save(o);
-		}
+	    if(idOmiljeni != null) {
+	    	for (Integer id : idOmiljeni) {
+	    		OmiljenoPK ompk = new OmiljenoPK();
+	    		ompk.setKorisnik_username(trenutniKorisnik.getUsername());
+	    		ompk.setProizvod_idProizvod(id);
+	    		Omiljeno o = om.getReferenceById(ompk);
+	    		o.setKategorijekorisnika(kr.getReferenceById(idKategorija));
+	    		try {
+					om.save(o);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	    }
     	return "dodajProzivode";
     }
     

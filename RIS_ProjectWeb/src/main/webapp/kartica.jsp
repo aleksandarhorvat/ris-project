@@ -11,7 +11,6 @@
 <body>
 	<h1>Dodaj karticu</h1>
 	<form:form action="/Prodavnica/kartica/saveKartica" method="post" modelAttribute="kartica">
-		<%--!Za korisnika <form:input type="text" path="korisnik_username" value="${trenutniKorisnik.getUsername() }"/><br>--%>
 		Broj kartice: <form:input type="number" path="brojKartice"/><br>
 		CVV: <form:input type="number" path="cvv"/><br>
 		Datum Isticanja: <form:input type="date" path="datumIsticanja"/><br>
@@ -19,6 +18,10 @@
         <input type="submit" value="Unesi karticu">
     </form:form>
     <br>
+    <button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
+    <script>
+        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}//dodaj ostalima ovo
+    </script>
 	<c:if test="${!empty porukaKartica}">
 		${porukaKartica }
 	</c:if>

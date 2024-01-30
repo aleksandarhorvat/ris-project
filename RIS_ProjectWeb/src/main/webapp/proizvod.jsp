@@ -46,6 +46,10 @@
         Omiljen: <input type="checkbox" name=omlijen><br>
         Koliko primeraka zelite da kupite: <input type="number" value="0" name=kolicina><br>
         <input type="submit" value="Potvrdi">
-    </form>
+    </form><br>
+    <button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
+    <script>
+        function goToIndex() {window.location.href = "/Prodavnica/proizvod/getProizvodiKupac";}//dodaj ostalima ovo
+    </script>
 </body>
 </html>

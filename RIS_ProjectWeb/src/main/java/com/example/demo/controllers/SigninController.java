@@ -38,11 +38,6 @@ public class SigninController {
 		return new Korisnik();
 	}
 	
-	@ModelAttribute("uloga")
-	public Uloga newUloga() {
-		return new Uloga();
-	}
-	
 	@ModelAttribute("uloge")
 	public List<Uloga> getUloge(){
 		return ur.findAll();

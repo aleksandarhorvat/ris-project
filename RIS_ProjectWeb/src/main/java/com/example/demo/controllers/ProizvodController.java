@@ -6,32 +6,52 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
+import com.example.demo.repositories.KategorijaRepository;
 import com.example.demo.repositories.KorisnikRepository;
 import com.example.demo.repositories.OcenaRepository;
 import com.example.demo.repositories.OmiljenoRepository;
+import com.example.demo.repositories.PopustRepository;
 import com.example.demo.repositories.PorudzbinaHasProizvodRepository;
 import com.example.demo.repositories.PorudzbinaRepository;
 import com.example.demo.repositories.ProizvodRepository;
+import com.example.demo.repositories.ProizvodjacRepository;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import model.Kategorija;
 import model.Korisnik;
 import model.Ocena;
 import model.OcenaPK;
 import model.Omiljeno;
 import model.OmiljenoPK;
+import model.Popust;
 import model.Porudzbina;
 import model.PorudzbinaHasProizvod;
 import model.PorudzbinaHasProizvodPK;
 import model.Proizvod;
+import model.Proizvodjac;
 
 @Controller
 @RequestMapping(value="/proizvod/")
 public class ProizvodController {
+	
+	@Autowired
+	PopustRepository popr;
+	
+	@Autowired
+	ProizvodjacRepository pror;
+	
+	@Autowired
+	KategorijaRepository kar;
 	
 	@Autowired
 	ProizvodRepository pr;
@@ -51,10 +71,40 @@ public class ProizvodController {
 	@Autowired
 	PorudzbinaHasProizvodRepository phpr;
 	
+	@GetMapping("getDodajProizvodPage")
+	public String getProizvod(HttpServletRequest request) {
+		return "dodajProizvod";
+	}
+	
+	@ModelAttribute("kategorije")
+	public List<Kategorija> getKategorije(){
+		return kar.findAll();
+	}
+	
+	@ModelAttribute("proizvodjaci")
+	public List<Proizvodjac> getProizvodjaci(){
+		return pror.findAll();
+	}
+	
+	@ModelAttribute("popusti")
+	public List<Popust> getPopusti(){
+	    List<Popust> popusti = popr.findAll();
+	    Popust nullPopust = new Popust();
+	    nullPopust.setIdPopust(0);
+	    nullPopust.setProcenat(null);
+	    popusti.add(nullPopust);
+		return popusti;
+	}
+	
+	@ModelAttribute("proizvodDodat")
+	public Proizvod getProizvodDodat(){
+		return new Proizvod();
+	}
+	
 	@GetMapping("getProizvodi")
 	public String getKategorije(HttpServletRequest request) {
 		List<Proizvod> proz = pr.findAll();
-		request.getSession().setAttribute("proizvodi", proz);
+		request.setAttribute("proizvodi", proz);
 		return "pregledProizvoda";
 	}
 	
@@ -65,11 +115,35 @@ public class ProizvodController {
 		return "pregledProzivodaKupac";
 	}
 	
+	@GetMapping("getProizvodiAdmin")
+	public String getKategorijeAdmin() {
+		return "pregledProizvodaAdmin";
+	}
+	
+	@ModelAttribute("proizvodiAdmin")
+	public List<Proizvod> getProizvodiAdmint(){
+		return pr.findAll();
+	}
+	
 	@GetMapping("getProizvod")
-	public String getGlumci(@RequestParam("idP")Integer idProizvoda, HttpServletRequest request) {
+	public String getProizvod(@RequestParam("idP")Integer idProizvoda, HttpServletRequest request) {
 		Proizvod p = pr.getReferenceById(idProizvoda);
 		request.getSession().setAttribute("proizvod", p);
 		return "proizvod";
+	}
+	
+	@GetMapping("getProizvodAdmin")
+	public String getProizvodAdmin(@RequestParam("idP")Integer idProizvoda, HttpServletRequest request) {
+		Proizvod p = pr.getReferenceById(idProizvoda);
+		request.setAttribute("proizvod", p);
+		return "pregledProizvodaAdmin";
+	}
+	
+	@GetMapping("deleteProizvod")
+	public String deleteProizvod(@RequestParam("idP")Integer idProizvoda) {
+		Proizvod p = pr.getReferenceById(idProizvoda);
+		pr.delete(p);
+		return "pregledProizvodaAdmin";
 	}
 	
     @PostMapping("savePodaci")
@@ -105,6 +179,7 @@ public class ProizvodController {
 				// TODO: handle exception
 			}
     	}
+    	System.out.println("Ovo je omiljen: " + omlijen);
     	if(omlijen != null && omlijen.equals("on")) {
         	OmiljenoPK ompk = new OmiljenoPK();
         	ompk.setKorisnik_username(trenutniKorisnik.getUsername());
@@ -174,7 +249,64 @@ public class ProizvodController {
 			kr.save(trenutniKorisnik);
 			pr.save(p);
     	}
+    	else {
+			Porudzbina porudzbina = new Porudzbina();
+    	    porudzbina.setKorisnik_username(trenutniKorisnik.getUsername());
+			PorudzbinaHasProizvodPK phpk = new PorudzbinaHasProizvodPK();
+			phpk.setPorudzbina_Korisnik_username(trenutniKorisnik.getUsername());
+			phpk.setProizvod_idProizvod(p.getIdProizvod());
+			
+			PorudzbinaHasProizvod php = new PorudzbinaHasProizvod();
+			php.setId(phpk);
+			
+			porudzbina.removePorudzbinaHasProizvod(php);
+			
+			p.removePorudzbinaHasProizvod(php);
+			
+			trenutniKorisnik.setPorudzbina(null);
+			
+			try {
+				phpr.delete(php);
+				por.delete(porudzbina);
+				kr.save(trenutniKorisnik);
+				pr.save(p);
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+    	}
     	return "pregledProzivodaKupac";
     }
 	
+    @InitBinder
+    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
+    	binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());  
+    }
+    
+    @PostMapping("saveProizvod")
+    public String saveProizvod(@ModelAttribute("proizvodDodat") Proizvod proizvod, HttpServletRequest request) {
+		String poruka = "";
+		try {
+			Proizvod p = pr.save(proizvod);
+			poruka += "Uspesno je sacuvan prozivod! Naziv proizvoda je: "+p.getIme();
+		} catch(Exception e) {
+			poruka += "Greska prilikom cuvanja proizvoda!";
+		}
+		request.setAttribute("porukaProzivod", poruka);
+        return "dodajProizvod";
+    }
+    
+    @PostMapping("changeProizvod")
+    public String changeProizvod(@ModelAttribute("proizvodDodat") Proizvod proizvod, HttpServletRequest request) {
+		String poruka = "";
+		try {
+			Proizvod p = pr.save(proizvod);
+			poruka += "Uspesno je promenjen prozivod! Naziv proizvoda je: "+p.getIme();
+		} catch(Exception e) {
+			poruka += "Greska prilikom menjanja proizvoda!";
+		}
+		request.setAttribute("porukaProzivod", poruka);
+        return "pregledProizvodaAdmin";
+    }
+    
 }

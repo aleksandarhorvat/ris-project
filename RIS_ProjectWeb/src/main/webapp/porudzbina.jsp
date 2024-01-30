@@ -1,27 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import="java.util.Base64" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Pregled prozivoda</title>
+<title>Pregled porudzbine</title>
 </head>
 <body>
-	<h1>Dostupni proizvodi</h1><br>
-	<c:if test="${!empty proizvodi }">
+	<h1>Pregled porudzbine</h1>
+	<c:if test="${!empty porudzbine }">
 		<table border="1" style="text-align: center;">
 			<tr>
 				<th>Slika prozivoda</th>
 				<th>Ime proizvoda</th>
 				<th>Cena prozivoda</th>
-				<th>Popust</th>
-				<th>Informacije</th>
+				<th>Kolicina</th>
 			</tr>
-			<c:forEach items="${proizvodi}" var="p">
+			<c:forEach items="${porudzbine}" var="p" varStatus="status">
 				<tr>
 					<td style="width: fit-content">
 					    <img src="data:image/jpeg;base64,${p.slikaAsBase64}" alt="Slika proizvoda" style="width: 200px;">
@@ -33,21 +29,17 @@
 					<c:if test="${!empty p.popust}">
 						<td>${p.cena -  (p.cena / p.popust.procenat)}</td>
 					</c:if>
-					<c:if test="${!empty p.popust}">
-						<th>${p.popust.procenat } %</th>
-					</c:if>
-					<c:if test="${empty p.popust}">
-						<th></th>
-					</c:if>
-					<td><a href="/Prodavnica/proizvod/getProizvod?idP=${p.idProizvod}">Vise o proizvodu</a></td>
+					<td>${kolicine[status.index] }</td>
 				</tr>
 			</c:forEach>
 		</table>
-	</c:if>
-	<br>
+	</c:if><br>
+		Datum narucivanja: ${porudzbina.datumNarucivanja }<br>
+		Datum isporuke: ${porudzbina.datumIsporuke }<br>
+		Status narudzbine: ${porudzbina.status }<br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>
-        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}//dodaj ostalima ovo
+        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}
     </script>
 </body>
 </html>

@@ -7,9 +7,17 @@
 <title>Pregled Administratora</title>
 </head>
 <body>
-	<h1>Pocetna stranica za Administratora</h1>
-	<c:if test="${!empty trenutniKorisnik}">
-		${trenutniKorisnik.ime }
-	</c:if>
+	<h1>Pocetna stranica za administratora</h1>
+	<a href="/Prodavnica/proizvod/getDodajProizvodPage">Dodaj proizvod</a><br>
+	<a href="/Prodavnica/proizvod/getProizvodiAdmin">Pogledaj prozivode</a><br><br>
+	<a href="/Prodavnica/kartica/getKartica">Dodaj kategorjiu prozivoda</a><br>
+	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pogledaj kategorjie prozivoda</a><br><br>
+	<a href="/Prodavnica/kartica/getKartica">Dodaj proizvodjaca</a><br>
+	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pogledaj proizvodjace</a><br><br>
+	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pregled statistike</a><br><br>
+	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
+    <script>
+        function goToIndex() {window.location.href = "/Prodavnica";}
+    </script>
 </body>
 </html>

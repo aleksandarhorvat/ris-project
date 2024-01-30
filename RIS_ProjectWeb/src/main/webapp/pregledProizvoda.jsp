@@ -23,7 +23,7 @@
 			<c:forEach items="${proizvodi}" var="p">
 				<tr>
 					<td style="width: fit-content">
-					    <img src="data:image/jpeg;base64,${p.slikaAsBase64}" alt="Slika proizvoda" style="width: 200px;">
+					    <img src="data:image/jpeg;base64,${p.slikaAsBase64}" style="width: 200px;">
 					</td>
 					<td>${p.ime }</td>
 					<c:if test="${empty p.popust}">
@@ -42,6 +42,11 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	<br>
+	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
+    <script>
+        function goToIndex() {window.location.href = "/Prodavnica";}
+    </script>
 	<br>
 </body>
 </html>

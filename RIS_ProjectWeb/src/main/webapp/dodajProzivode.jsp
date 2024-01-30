@@ -22,7 +22,11 @@
 			</c:forEach>
 		</select><br>
         <input type="submit" value="Sacuvaj">
-    </form>
+    </form><br>
+    <button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
+    <script>
+        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}//dodaj ostalima ovo
+    </script>
     	<c:if test="${!empty porukaKategorija}">
 		${porukaKategorija }
 	</c:if>

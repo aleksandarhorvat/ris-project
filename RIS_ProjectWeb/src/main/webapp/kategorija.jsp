@@ -13,8 +13,12 @@
 	<form:form action="/Prodavnica/kategorija/saveKategorija" method="post" modelAttribute="kategorija">
         Naziv: <input type="text" name="naziv"><br>
         <input type="submit" value="Sacuvaj">
-    </form:form>
-    	<c:if test="${!empty porukaKategorija}">
+    </form:form><br>
+    <button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
+    <script>
+        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}//dodaj ostalima ovo
+    </script>
+    <c:if test="${!empty porukaKategorija}">
 		${porukaKategorija }
 	</c:if>
 </body>

@@ -15,6 +15,10 @@
     </form>
     <c:if test="${!empty error}">
 		${error }
-	</c:if>
+	</c:if><br>
+	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
+    <script>
+        function goToIndex() {window.location.href = "/Prodavnica";}
+    </script>
 </body>
 </html>
