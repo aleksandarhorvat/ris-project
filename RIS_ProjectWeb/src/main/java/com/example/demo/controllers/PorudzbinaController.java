@@ -32,6 +32,8 @@ public class PorudzbinaController {
     @GetMapping("getPorudzbina")
     public String getPorudzbina(HttpServletRequest request) {
 	    Korisnik trenutniKorisnik = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
+	    if(trenutniKorisnik.getPorudzbina() == null)
+	    	return "kupacPage";
 	    Porudzbina p = pr.getReferenceById(trenutniKorisnik.getUsername());
 		List<PorudzbinaHasProizvod> porudzbina = phpr.getPorudzbinaZaKorisnika(trenutniKorisnik.getUsername());
 		List<Proizvod> proizvodi = new ArrayList<>();

@@ -10,8 +10,8 @@
 	<h1>Pocetna stranica za administratora</h1>
 	<a href="/Prodavnica/proizvod/getDodajProizvodPage">Dodaj proizvod</a><br>
 	<a href="/Prodavnica/proizvod/getProizvodiAdmin">Pogledaj prozivode</a><br><br>
-	<a href="/Prodavnica/kartica/getKartica">Dodaj kategorjiu prozivoda</a><br>
-	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pogledaj kategorjie prozivoda</a><br><br>
+	<a href="/Prodavnica/kategorija/getDodajKategorijuPage">Dodaj kategorjiu prozivoda</a><br>
+	<a href="/Prodavnica/kategorija/getKategorijePage">Pogledaj kategorjie prozivoda</a><br><br>
 	<a href="/Prodavnica/kartica/getKartica">Dodaj proizvodjaca</a><br>
 	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pogledaj proizvodjace</a><br><br>
 	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pregled statistike</a><br><br>

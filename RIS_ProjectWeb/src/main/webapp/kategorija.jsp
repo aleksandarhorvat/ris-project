@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Napravi kategoriju</h1>
-	<form:form action="/Prodavnica/kategorija/saveKategorija" method="post" modelAttribute="kategorija">
+	<form:form action="/Prodavnica/kategorijaKorisnika/saveKategorija" method="post" modelAttribute="kategorija">
         Naziv: <input type="text" name="naziv"><br>
         <input type="submit" value="Sacuvaj">
     </form:form><br>

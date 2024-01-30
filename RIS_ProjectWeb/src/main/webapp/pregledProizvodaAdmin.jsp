@@ -36,25 +36,24 @@
 			<table border="1">
 				<tr>
 					<td>Ime:</td>
-					<td><form:input type="text" path="ime" required="true" /></td>
+					<td><form:input type="text" path="ime" /></td>
 					<td>Trenutna vrednost: ${proizvod.ime }</td>
 				</tr>
 				<tr>
 					<td>Cena:</td>
-					<td><form:input type="number" path="cena" required="true" /></td>
+					<td><form:input type="number" path="cena" /></td>
 					<td>Trenutna vrednost: ${proizvod.cena }</td>
 				</tr>
 				<tr>
 					<td>Slika:</td>
-					<td><form:input type="file" path="slika" required="true" /></td>
+					<td><form:input type="file" path="slika" /></td>
 					<td>Trenutna vrednost: <img
-						src="data:image/jpeg;base64,${proizvod.slikaAsBase64}"
-						alt="Slika proizvoda" style="width: 200px;">
+						src="data:image/jpeg;base64,${proizvod.slikaAsBase64}" alt="null" style="width: 200px;">
 					</td>
 				</tr>
 				<tr>
 					<td>Opis:</td>
-					<td><form:input type="text" path="opis" required="true" /></td>
+					<td><form:input type="text" path="opis"/></td>
 					<td>Trenutna vrednost: ${proizvod.opis }</td>
 				</tr>
 				<tr>

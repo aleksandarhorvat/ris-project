@@ -143,7 +143,7 @@ public class ProizvodController {
 	public String deleteProizvod(@RequestParam("idP")Integer idProizvoda) {
 		Proizvod p = pr.getReferenceById(idProizvoda);
 		pr.delete(p);
-		return "pregledProizvodaAdmin";
+		return "adminPage";
 	}
 	
     @PostMapping("savePodaci")
@@ -299,8 +299,32 @@ public class ProizvodController {
     @PostMapping("changeProizvod")
     public String changeProizvod(@ModelAttribute("proizvodDodat") Proizvod proizvod, HttpServletRequest request) {
 		String poruka = "";
+		Proizvod p = pr.getReferenceById(proizvod.getIdProizvod());
 		try {
-			Proizvod p = pr.save(proizvod);
+			if(!proizvod.getIme().equals("") && !p.getIme().equals(proizvod.getIme())) {
+				p.setIme(proizvod.getIme());
+			}
+			if(p.getCena() != proizvod.getCena()) {
+				p.setCena(proizvod.getCena());
+			}
+			System.out.println("ovo je slika " + proizvod.getSlika().length);
+			if(proizvod.getSlika().length > 0 && !p.getSlika().equals(proizvod.getSlika())) {
+				p.setSlika(proizvod.getSlika());
+			}
+			System.out.println("Ovo je opis " + proizvod.getOpis());
+			if(!proizvod.getOpis().equals("") && !p.getOpis().equals(proizvod.getOpis())) {
+				p.setOpis(proizvod.getOpis());
+			}
+			System.out.println("id popusta " + proizvod.getPopust());
+			if(proizvod.getPopust() == null)
+				p.setPopust(proizvod.getPopust());
+			if(p.getPopust() == null || !p.getPopust().equals(proizvod.getPopust()))
+				p.setPopust(proizvod.getPopust());
+			if(!p.getKategorija().equals(proizvod.getKategorija()))
+				p.setKategorija(proizvod.getKategorija());
+			if(!p.getProizvodjac().equals(proizvod.getProizvodjac()))
+				p.setProizvodjac(proizvod.getProizvodjac());
+			pr.save(p);
 			poruka += "Uspesno je promenjen prozivod! Naziv proizvoda je: "+p.getIme();
 		} catch(Exception e) {
 			poruka += "Greska prilikom menjanja proizvoda!";

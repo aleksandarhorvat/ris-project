@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Dodaj prozivode u kategoriju</h1>
-	<form action="/Prodavnica/kategorija/saveProizvode" method="post">
+	<form action="/Prodavnica/kategorijaKorisnika/saveProizvode" method="post">
         Izaberi kategoriju u koju zelis da dodas omiljene prozivode: <select name=idKategorija>
 			<c:forEach items="${kategorije}" var="k">
 				<option value="${k.idKategorijeKorisnika}">${k.naziv}</option>

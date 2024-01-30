@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Izmeni proizvod</title>
+<title>Pregled kategorija prozivodae</title>
 </head>
 <body>
-<h1>Menjanje proizvoda</h1>
+<h1>Kategorije proizvoda</h1>
+
 </body>
 </html>
