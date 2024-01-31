@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.repositories.KategorijaRepository;
+import com.example.demo.repositories.ProizvodRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 import model.Kategorija;
+import model.Proizvod;
 
 @Controller
 @RequestMapping("/kategorija/")
@@ -22,6 +24,9 @@ public class KategorijaController {
 	
 	@Autowired
 	KategorijaRepository kar;
+	
+	@Autowired
+	ProizvodRepository pr;
 	
 	@GetMapping("getDodajKategorijuPage")
 	public String getDodajKategorijuPage() {
@@ -91,4 +96,16 @@ public class KategorijaController {
         return "pregledKategorija";
     }
 	
+	@GetMapping("getProizvodiPoKategorijiPage")
+	public String getProizvodiPoKategorijiPage() {
+		return "proizvodiPoKategorijama";
+	}
+    
+	@GetMapping("getProizvodi")
+	public String getProizvodi(@RequestParam("idK")Integer idKategorija, HttpServletRequest request) {
+		Kategorija k = kar.getReferenceById(idKategorija);
+		List<Proizvod> proizvodi = pr.getProizvodiKategorije(k.getIdKategorija());
+		request.setAttribute("brojProizvoda", proizvodi.size());
+		return "proizvodiPoKategorijama";
+	}
 }

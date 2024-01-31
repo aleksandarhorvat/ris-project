@@ -1,13 +1,22 @@
 package com.example.demo.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.repositories.KorisnikRepository;
 import com.example.demo.repositories.PorudzbinaHasProizvodRepository;
 import com.example.demo.repositories.PorudzbinaRepository;
 
@@ -24,10 +33,41 @@ import model.Proizvod;
 public class PorudzbinaController {
 	
 	@Autowired
+	KorisnikRepository kr;
+	
+	@Autowired
 	PorudzbinaRepository pr;
 	
 	@Autowired
 	PorudzbinaHasProizvodRepository phpr;
+	
+	@ModelAttribute("korisnici")
+	public List<Korisnik> getKorisnici(){
+		List<Korisnik> korisnici =  kr.findAll();
+		List<Korisnik> returnK = new ArrayList<>();
+		for (Korisnik k : korisnici) {
+			if(k.getUloga().getIdUloga() == 2 && k.getPorudzbina() != null)
+				returnK.add(k);
+		}
+		return returnK;
+	}
+	
+	@ModelAttribute("porudzbine")
+	public List<Porudzbina> getPorudzbine(){
+		return pr.findAll();
+	}
+	
+	@ModelAttribute("porudzbina")
+	public Porudzbina getPorudzbina(){
+		return new Porudzbina();
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		sdf.setLenient(true); 
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true)); 
+	}
 	
     @GetMapping("getPorudzbina")
     public String getPorudzbina(HttpServletRequest request) {
@@ -48,6 +88,45 @@ public class PorudzbinaController {
 		return "porudzbina";
     }
 	
+    @GetMapping("getPorudzbinePoDanimaPage")
+    public String getPorudzbinePoDanimaPage() {
+		return "porudzbinePoDanima";
+    }
     
+	@GetMapping("getPorudzbine")
+	public String getPorudzbine(Date datumNarucivanja, HttpServletRequest request) {
+		List<Porudzbina> porudzbine = pr.getPorudzbineDatumNarucivanja(datumNarucivanja);
+		request.setAttribute("brojPorudzbina", porudzbine.size());
+		return "porudzbinePoDanima";
+	}
     
+    @GetMapping("getPromenaStatusPorudzbinePage")
+    public String getPromenaStatusaPorudzbinePage() {
+		return "promenaStatusPorudzbine";
+    }
+	
+	@GetMapping("getPorudzbinu")
+	public String getPorudzbinu(@RequestParam("idK")String username, HttpServletRequest request) {
+		Porudzbina p = pr.getPorudzbinaKorisnika(username);
+		request.setAttribute("proudzbinaIzmena", p);
+		return "promenaStatusPorudzbine";
+	}
+    
+    @PostMapping("changeStatus")
+    public String changeStatus(@ModelAttribute("porudzbina") Porudzbina porudzbina, HttpServletRequest request) {
+		String poruka = "";
+		Porudzbina p = pr.getReferenceById(porudzbina.getKorisnik_username());
+		try {
+			if(!porudzbina.getStatus().equals("") && !p.getStatus().equals(porudzbina.getStatus())) {
+				p.setStatus(porudzbina.getStatus());
+			}
+			pr.save(p);
+			poruka += "Uspesno je promenjen status porudzbine! Status pordzbine je: " + p.getStatus();
+		} catch(Exception e) {
+			poruka += "Greska prilikom menjanja statusa porudzbine!";
+		}
+		request.setAttribute("porukaPorudzbina", poruka);
+        return "promenaStatusPorudzbine";
+    }
+	
 }

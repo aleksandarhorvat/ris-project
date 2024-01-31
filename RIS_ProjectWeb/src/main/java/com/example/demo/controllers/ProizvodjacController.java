@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.repositories.ProizvodRepository;
 import com.example.demo.repositories.ProizvodjacRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
+import model.Proizvod;
 import model.Proizvodjac;
 
 @Controller
@@ -21,6 +23,9 @@ public class ProizvodjacController {
 
 	@Autowired
 	ProizvodjacRepository pr;
+	
+	@Autowired
+	ProizvodRepository pror;
 	
 	@GetMapping("getDodajProizvodjacaPage")
 	public String getDodajProizvodjacaPage() {
@@ -90,4 +95,17 @@ public class ProizvodjacController {
         return "pregledProizvodjaca";
     }
 	
+	@GetMapping("getProizvodiPoProzivodjacuPage")
+	public String getProizvodiPoProzivodjacuPage() {
+		return "proizvodiPoProizvodjacima";
+	}
+    
+	@GetMapping("getProizvodi")
+	public String getProizvodi(@RequestParam("idP")Integer idProzivodjac, HttpServletRequest request) {
+		Proizvodjac p = pr.getReferenceById(idProzivodjac);
+		List<Proizvod> proizvodi = pror.getProizvodiProzivodjaci(p.getIdProizvodjac());
+		request.setAttribute("brojProizvoda", proizvodi.size());
+		return "proizvodiPoProizvodjacima";
+	}
+    
 }
