@@ -12,8 +12,8 @@
 	<a href="/Prodavnica/proizvod/getProizvodiAdmin">Pogledaj prozivode</a><br><br>
 	<a href="/Prodavnica/kategorija/getDodajKategorijuPage">Dodaj kategorjiu prozivoda</a><br>
 	<a href="/Prodavnica/kategorija/getKategorijePage">Pogledaj kategorjie prozivoda</a><br><br>
-	<a href="/Prodavnica/kartica/getKartica">Dodaj proizvodjaca</a><br>
-	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pogledaj proizvodjace</a><br><br>
+	<a href="/Prodavnica/proizvodjac/getDodajProizvodjacaPage">Dodaj proizvodjaca</a><br>
+	<a href="/Prodavnica/proizvodjac/getProizvodjaciPage">Pogledaj proizvodjace</a><br><br>
 	<a href="/Prodavnica/proizvod/getProizvodiKupac">Pregled statistike</a><br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>

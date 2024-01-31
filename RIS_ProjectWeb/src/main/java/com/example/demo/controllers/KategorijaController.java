@@ -66,7 +66,11 @@ public class KategorijaController {
 	@GetMapping("deleteKategorija")
 	public String deleteKategorija(@RequestParam("idK")Integer idKategorija) {
 		Kategorija k = kar.getReferenceById(idKategorija);
-		kar.delete(k);
+		try {
+			kar.delete(k);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "adminPage";
 	}
 	
