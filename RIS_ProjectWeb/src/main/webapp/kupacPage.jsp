@@ -13,6 +13,7 @@
 	<a href="/Prodavnica/kategorijaKorisnika/getKategorijaPage">Napravi kategoriju prozivoda</a><br>
 	<a href="/Prodavnica/kategorijaKorisnika/getDodajProizvodePage">Dodaj proizvode u kategoriju</a><br>
 	<a href="/Prodavnica/porudzbina/getPorudzbina">Pogledaj sadrzaj korpe</a><br><br>
+	<a href="/Prodavnica/izvestaj/kreirajIzvestaj">Posalji racun</a><br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>
         function goToIndex() {window.location.href = "/Prodavnica";}

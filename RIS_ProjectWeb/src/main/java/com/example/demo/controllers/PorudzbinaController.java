@@ -82,9 +82,9 @@ public class PorudzbinaController {
 			proizvodi.add(php.getProizvod());
 			kolicine.add(php.getKolicina());
 		}
-		request.setAttribute("porudzbine", proizvodi);
+		request.setAttribute("proizvodi", proizvodi);
 		request.setAttribute("kolicine", kolicine);
-		request.setAttribute("porudzbina", p);
+		request.setAttribute("porudzbinaPrikaz", p);
 		return "porudzbina";
     }
 	
