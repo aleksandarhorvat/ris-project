@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -147,8 +149,8 @@ public class ProizvodController {
 	}
 	
     @PostMapping("savePodaci")
-    public String savePodaci(Integer ocena, String omlijen, Integer kolicina, HttpServletRequest request) {
-	    Korisnik trenutniKorisnik = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
+    public String savePodaci(Integer ocena, String omlijen, Integer kolicina, HttpServletRequest request, @AuthenticationPrincipal UserDetails userDetails) {
+	    Korisnik trenutniKorisnik = kr.findByUsername(userDetails.getUsername());
 		Proizvod p = (Proizvod) request.getSession().getAttribute("proizvod");
     	if(ocena != null) {
     		OcenaPK opk = new OcenaPK();

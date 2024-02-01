@@ -5,10 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.repositories.KorisnikRepository;
 import com.example.demo.repositories.PorudzbinaHasProizvodRepository;
 import com.example.demo.services.EmailService;
 
@@ -25,15 +28,18 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 public class IzvestajController {
 	
 	@Autowired
+	KorisnikRepository kr;
+	
+	@Autowired
 	PorudzbinaHasProizvodRepository phpr;
 	
 	@Autowired
 	EmailService emailService;
 	
 	@GetMapping("kreirajIzvestaj")
-	public String kreirajIzvestaj(Integer idKnjige, HttpServletRequest request) throws Exception {
+	public String kreirajIzvestaj(Integer idKnjige, @AuthenticationPrincipal UserDetails userDetails, HttpServletRequest request) throws Exception {
 		try {
-			Korisnik k = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
+			Korisnik k = kr.findByUsername(userDetails.getUsername());
 			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(phpr.getPorudzbinaZaKorisnika(k.getUsername()));
 			InputStream inputStream = this.getClass().getResourceAsStream("/jasperreports/Racun.jrxml");
 			JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);

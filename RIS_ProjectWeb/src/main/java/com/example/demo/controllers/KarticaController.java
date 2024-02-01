@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,8 +51,8 @@ public class KarticaController {
 	}
 	
 	@PostMapping("saveKartica")
-	public String savePredstava(@ModelAttribute("kartica") KarticaPK kartica, HttpServletRequest request) {
-	    Korisnik trenutniKorisnik = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
+	public String savePredstava(@ModelAttribute("kartica") KarticaPK kartica, @AuthenticationPrincipal UserDetails userDetails, HttpServletRequest request) {
+	    Korisnik trenutniKorisnik = kr.findByUsername(userDetails.getUsername());
 	    
 	    String poruka = "";
 	    

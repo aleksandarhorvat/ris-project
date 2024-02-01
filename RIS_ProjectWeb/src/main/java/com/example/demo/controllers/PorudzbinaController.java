@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,8 +72,8 @@ public class PorudzbinaController {
 	}
 	
     @GetMapping("getPorudzbina")
-    public String getPorudzbina(HttpServletRequest request) {
-	    Korisnik trenutniKorisnik = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
+    public String getPorudzbina(HttpServletRequest request, @AuthenticationPrincipal UserDetails userDetails) {
+	    Korisnik trenutniKorisnik = kr.findByUsername(userDetails.getUsername());
 	    if(trenutniKorisnik.getPorudzbina() == null)
 	    	return "kupacPage";
 	    Porudzbina p = pr.getReferenceById(trenutniKorisnik.getUsername());

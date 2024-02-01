@@ -6,6 +6,7 @@ import com.example.demo.repositories.KarticaRepository;
 import com.example.demo.repositories.KorisnikRepository;
 import com.example.demo.repositories.UlogaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,8 @@ public class SigninController {
     @PostMapping("saveKorisnik")
     public String saveKorisnik(@ModelAttribute("korisnik") Korisnik korisnik, Model m) {
 		String poruka = "";
+		BCryptPasswordEncoder encd = new BCryptPasswordEncoder();
+		korisnik.setPassword(encd.encode(korisnik.getPassword()));
 		try {
 			Korisnik k = kr.save(korisnik);
 			poruka += "Uspesno je sacuvan korisnik! Username korisnika je: "+k.getUsername();

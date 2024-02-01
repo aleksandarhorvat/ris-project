@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.repositories.KategorijekorisnikaRepository;
+import com.example.demo.repositories.KorisnikRepository;
 import com.example.demo.repositories.OmiljenoRepository;
 import com.example.demo.repositories.ProizvodRepository;
 
-import jakarta.servlet.http.HttpServletRequest;
 import model.Kategorijekorisnika;
 import model.Korisnik;
 import model.Omiljeno;
@@ -26,6 +28,9 @@ import model.Proizvod;
 @Controller
 @RequestMapping("/kategorijaKorisnika/")
 public class KategorijaKorisnikaController {
+	
+	@Autowired
+	KorisnikRepository kor;
 	
 	@Autowired
 	KategorijekorisnikaRepository kr;
@@ -52,8 +57,8 @@ public class KategorijaKorisnikaController {
 	}
 	
 	@ModelAttribute("omiljeni")
-	public List<Proizvod> getOmiljeni(HttpServletRequest request){
-	    Korisnik trenutniKorisnik = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
+	public List<Proizvod> getOmiljeni(@AuthenticationPrincipal UserDetails userDetails){
+		Korisnik trenutniKorisnik = kor.findByUsername(userDetails.getUsername());
 		List<Omiljeno> omiljeniList = om.getOmiljeniZaKorisnika(trenutniKorisnik.getUsername());
 	    List<Proizvod> proizvodi = new ArrayList<>();
 
@@ -90,8 +95,8 @@ public class KategorijaKorisnikaController {
     }
     
     @PostMapping("saveProizvode")
-    public String saveProizvode(int[] idOmiljeni, Integer idKategorija, HttpServletRequest request) {
-	    Korisnik trenutniKorisnik = (Korisnik) request.getSession().getAttribute("trenutniKorisnik");
+    public String saveProizvode(int[] idOmiljeni, Integer idKategorija, @AuthenticationPrincipal UserDetails userDetails) {
+		Korisnik trenutniKorisnik = kor.findByUsername(userDetails.getUsername());
 	    if(idOmiljeni != null) {
 	    	for (Integer id : idOmiljeni) {
 	    		OmiljenoPK ompk = new OmiljenoPK();
