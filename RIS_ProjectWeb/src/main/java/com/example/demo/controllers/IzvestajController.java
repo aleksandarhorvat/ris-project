@@ -37,7 +37,7 @@ public class IzvestajController {
 	EmailService emailService;
 	
 	@GetMapping("kreirajIzvestaj")
-	public String kreirajIzvestaj(Integer idKnjige, @AuthenticationPrincipal UserDetails userDetails, HttpServletRequest request) throws Exception {
+	public String kreirajIzvestaj(@AuthenticationPrincipal UserDetails userDetails, HttpServletRequest request) throws Exception {
 		try {
 			Korisnik k = kr.findByUsername(userDetails.getUsername());
 			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(phpr.getPorudzbinaZaKorisnika(k.getUsername()));
@@ -50,9 +50,9 @@ public class IzvestajController {
 			if (jasperPrint != null)
 				emailService.sendEmailWithAttachment("r3366819@gmail.com", "aca.horvat.42@gmail.com", "racun", "vas racun", jasperPrint);
 		}catch (Exception e) {
-			return "kupacPage";
+			return "kupac/kupacPage";
 		}
-		return "kupacPage";
+		return "kupac/kupacPage";
 	}
 	
 }

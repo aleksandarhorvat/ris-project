@@ -29,7 +29,7 @@ public class ProizvodjacController {
 	
 	@GetMapping("getDodajProizvodjacaPage")
 	public String getDodajProizvodjacaPage() {
-		return "dodajProizvodjaca";
+		return "admin/dodajProizvodjaca";
 	}
 	
 	@ModelAttribute("proizvodjac")
@@ -52,19 +52,19 @@ public class ProizvodjacController {
 			poruka += "Greska prilikom cuvanja proizvodjaca!";
 		}
 		request.setAttribute("porukaProizvodjac", poruka);
-        return "dodajProizvodjaca";
+        return "admin/dodajProizvodjaca";
     }
 	
 	@GetMapping("getProizvodjaciPage")
 	public String getKategorijePage() {
-		return "pregledProizvodjaca";
+		return "admin/pregledProizvodjaca";
 	}
     
 	@GetMapping("getProizvodjaci")
 	public String getKategorije(@RequestParam("idP")Integer idProizvodjac, HttpServletRequest request) {
 		Proizvodjac p = pr.getReferenceById(idProizvodjac);
 		request.setAttribute("proizvodjacIzmena", p);
-		return "pregledProizvodjaca";
+		return "admin/pregledProizvodjaca";
 	}
 	
 	@GetMapping("deleteProizvodjac")
@@ -75,7 +75,7 @@ public class ProizvodjacController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "adminPage";
+		return "admin/adminPage";
 	}
 	
     @PostMapping("changeProizvodjac")
@@ -92,12 +92,12 @@ public class ProizvodjacController {
 			poruka += "Greska prilikom menjanja proizvodjaca!";
 		}
 		request.setAttribute("porukaProizvodjac", poruka);
-        return "pregledProizvodjaca";
+        return "admin/pregledProizvodjaca";
     }
 	
 	@GetMapping("getProizvodiPoProzivodjacuPage")
 	public String getProizvodiPoProzivodjacuPage() {
-		return "proizvodiPoProizvodjacima";
+		return "admin/statistika/proizvodiPoProizvodjacima";
 	}
     
 	@GetMapping("getProizvodi")
@@ -105,7 +105,7 @@ public class ProizvodjacController {
 		Proizvodjac p = pr.getReferenceById(idProzivodjac);
 		List<Proizvod> proizvodi = pror.getProizvodiProzivodjaci(p.getIdProizvodjac());
 		request.setAttribute("brojProizvoda", proizvodi.size());
-		return "proizvodiPoProizvodjacima";
+		return "admin/statistika/proizvodiPoProizvodjacima";
 	}
     
 }

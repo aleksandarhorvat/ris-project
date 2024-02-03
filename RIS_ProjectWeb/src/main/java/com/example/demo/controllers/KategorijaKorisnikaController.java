@@ -43,12 +43,12 @@ public class KategorijaKorisnikaController {
     
 	@GetMapping("getKategorijaPage")
 	public String getKategorijaPage() {
-		return "kategorija";
+		return "kupac/kategorija";
 	}
     
 	@GetMapping("getDodajProizvodePage")
 	public String getDodajProizvodePage() {
-	    return "dodajProzivode";
+	    return "kupac/dodajProzivode";
 	}
 	
 	@ModelAttribute("kategorije")
@@ -91,7 +91,7 @@ public class KategorijaKorisnikaController {
 			poruka += "Greska prilikom cuvanja kategorija!";
 		}
 		m.addAttribute("porukaKategorija", poruka);
-        return "kategorija";
+        return "kupac/kategorija";
     }
     
     @PostMapping("saveProizvode")
@@ -112,7 +112,7 @@ public class KategorijaKorisnikaController {
 				}
 			}
 	    }
-    	return "dodajProzivode";
+    	return "kupac/dodajProzivode";
     }
     
 }

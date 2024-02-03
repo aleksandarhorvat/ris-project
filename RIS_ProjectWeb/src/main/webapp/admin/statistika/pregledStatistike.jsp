@@ -13,7 +13,7 @@
 	<a href="/Prodavnica/porudzbina/getPorudzbinePoDanimaPage">Vidi koliko je novih porudzbina stiglo odredjenog dana</a><br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>
-        function goToIndex() {window.location.href = "/Prodavnica/adminPage.jsp";}
+        function goToIndex() {window.location.href = "/Prodavnica/admin/adminPage.jsp";}
     </script>
 </body>
 </html>

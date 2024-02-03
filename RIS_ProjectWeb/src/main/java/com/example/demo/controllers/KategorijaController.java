@@ -30,7 +30,7 @@ public class KategorijaController {
 	
 	@GetMapping("getDodajKategorijuPage")
 	public String getDodajKategorijuPage() {
-		return "dodajKategoriju";
+		return "admin/dodajKategoriju";
 	}
 	
 	@ModelAttribute("kategorija")
@@ -53,19 +53,19 @@ public class KategorijaController {
 			poruka += "Greska prilikom cuvanja kategorije proizvoda!";
 		}
 		request.setAttribute("porukaKategorija", poruka);
-        return "dodajKategoriju";
+        return "admin/dodajKategoriju";
     }
 	
 	@GetMapping("getKategorijePage")
 	public String getKategorijePage() {
-		return "pregledKategorija";
+		return "admin/pregledKategorija";
 	}
     
 	@GetMapping("getKategorije")
 	public String getKategorije(@RequestParam("idK")Integer idKategorija, HttpServletRequest request) {
 		Kategorija k = kar.getReferenceById(idKategorija);
 		request.setAttribute("kategorijaIzmena", k);
-		return "pregledKategorija";
+		return "admin.pregledKategorija";
 	}
 	
 	@GetMapping("deleteKategorija")
@@ -76,7 +76,7 @@ public class KategorijaController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "adminPage";
+		return "admin/adminPage";
 	}
 	
     @PostMapping("changeKategorija")
@@ -93,12 +93,12 @@ public class KategorijaController {
 			poruka += "Greska prilikom menjanja kategorije proizvoda!";
 		}
 		request.setAttribute("porukaKategorija", poruka);
-        return "pregledKategorija";
+        return "admin/pregledKategorija";
     }
 	
 	@GetMapping("getProizvodiPoKategorijiPage")
 	public String getProizvodiPoKategorijiPage() {
-		return "proizvodiPoKategorijama";
+		return "admin/statistika/proizvodiPoKategorijama";
 	}
     
 	@GetMapping("getProizvodi")
@@ -106,6 +106,6 @@ public class KategorijaController {
 		Kategorija k = kar.getReferenceById(idKategorija);
 		List<Proizvod> proizvodi = pr.getProizvodiKategorije(k.getIdKategorija());
 		request.setAttribute("brojProizvoda", proizvodi.size());
-		return "proizvodiPoKategorijama";
+		return "admin/statistika/proizvodiPoKategorijama";
 	}
 }

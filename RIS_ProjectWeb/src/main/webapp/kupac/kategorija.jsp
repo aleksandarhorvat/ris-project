@@ -16,7 +16,7 @@
     </form:form><br>
     <button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>
-        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}//dodaj ostalima ovo
+        function goToIndex() {window.location.href = "/Prodavnica/kupac/kupacPage.jsp";}//dodaj ostalima ovo
     </script>
     <c:if test="${!empty porukaKategorija}">
 		${porukaKategorija }

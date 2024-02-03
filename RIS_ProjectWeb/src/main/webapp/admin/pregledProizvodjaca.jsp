@@ -45,7 +45,7 @@
 	<br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
 	<script>
-        function goToIndex() {window.location.href = "/Prodavnica/adminPage.jsp";}
+        function goToIndex() {window.location.href = "/Prodavnica/admin/adminPage.jsp";}
     </script><br>
     <c:if test="${!empty porukaProizvodjac}">
 		${porukaProizvodjac }

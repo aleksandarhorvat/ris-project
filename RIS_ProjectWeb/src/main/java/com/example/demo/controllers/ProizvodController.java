@@ -75,7 +75,7 @@ public class ProizvodController {
 	
 	@GetMapping("getDodajProizvodPage")
 	public String getProizvod(HttpServletRequest request) {
-		return "dodajProizvod";
+		return "admin/dodajProizvod";
 	}
 	
 	@ModelAttribute("kategorije")
@@ -114,12 +114,12 @@ public class ProizvodController {
 	public String getKategorijeKupac(HttpServletRequest request) {
 		List<Proizvod> proz = pr.findAll();
 		request.getSession().setAttribute("proizvodi", proz);
-		return "pregledProzivodaKupac";
+		return "kupac/pregledProzivodaKupac";
 	}
 	
 	@GetMapping("getProizvodiAdmin")
 	public String getKategorijeAdmin() {
-		return "pregledProizvodaAdmin";
+		return "admin/pregledProizvodaAdmin";
 	}
 	
 	@ModelAttribute("proizvodiAdmin")
@@ -131,21 +131,21 @@ public class ProizvodController {
 	public String getProizvod(@RequestParam("idP")Integer idProizvoda, HttpServletRequest request) {
 		Proizvod p = pr.getReferenceById(idProizvoda);
 		request.getSession().setAttribute("proizvod", p);
-		return "proizvod";
+		return "kupac/proizvod";
 	}
 	
 	@GetMapping("getProizvodAdmin")
 	public String getProizvodAdmin(@RequestParam("idP")Integer idProizvoda, HttpServletRequest request) {
 		Proizvod p = pr.getReferenceById(idProizvoda);
 		request.setAttribute("proizvod", p);
-		return "pregledProizvodaAdmin";
+		return "admin/pregledProizvodaAdmin";
 	}
 	
 	@GetMapping("deleteProizvod")
 	public String deleteProizvod(@RequestParam("idP")Integer idProizvoda) {
 		Proizvod p = pr.getReferenceById(idProizvoda);
 		pr.delete(p);
-		return "adminPage";
+		return "admin/adminPage";
 	}
 	
     @PostMapping("savePodaci")
@@ -277,7 +277,7 @@ public class ProizvodController {
 				// TODO: handle exception
 			}
     	}
-    	return "pregledProzivodaKupac";
+    	return "kupac/pregledProzivodaKupac";
     }
 	
     @InitBinder
@@ -295,7 +295,7 @@ public class ProizvodController {
 			poruka += "Greska prilikom cuvanja proizvoda!";
 		}
 		request.setAttribute("porukaProzivod", poruka);
-        return "dodajProizvod";
+        return "admin/dodajProizvod";
     }
     
     @PostMapping("changeProizvod")
@@ -332,7 +332,7 @@ public class ProizvodController {
 			poruka += "Greska prilikom menjanja proizvoda!";
 		}
 		request.setAttribute("porukaProzivod", poruka);
-        return "pregledProizvodaAdmin";
+        return "admin/pregledProizvodaAdmin";
     }
     
 }

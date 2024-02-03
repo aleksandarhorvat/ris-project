@@ -22,7 +22,7 @@
 	</c:if><br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
 	<script>
-        function goToIndex() {window.location.href = "/Prodavnica/pregledStatistike.jsp";}
+        function goToIndex() {window.location.href = "/Prodavnica/admin/statistika/pregledStatistike.jsp";}
     </script><br>
 </body>
 </html>

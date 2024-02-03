@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Prikaz proizvoda po kategorijama</title>
+<title>Prikaz proizvoda po proizvodjacima</title>
 </head>
 <body>
-<h1>Prikaz proizvoda po kategorijama</h1>
-	<c:if test="${!empty kategorije }">
-		<form action="/Prodavnica/kategorija/getProizvodi" method="get">
-			<select name="idK">
-				<c:forEach items="${kategorije }" var="k">
-					<c:if test="${!empty k }">
-						<option value="${k.idKategorija}">${k.naziv}</option>
+	<h1>Prikaz proizvoda po proizvodjacima</h1>
+	<c:if test="${!empty proizvodjaci }">
+		<form action="/Prodavnica/proizvodjac/getProizvodi" method="get">
+			<select name="idP">
+				<c:forEach items="${proizvodjaci }" var="p">
+					<c:if test="${!empty p }">
+						<option value="${p.idProizvodjac}">${p.naziv}</option>
 					</c:if>
 				</c:forEach>
 			</select> <input type="submit" value="Prikazi vise">
@@ -27,7 +27,7 @@
 	</c:if><br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
 	<script>
-        function goToIndex() {window.location.href = "/Prodavnica/pregledStatistike.jsp";}
+        function goToIndex() {window.location.href = "/Prodavnica/admin/statistika/pregledStatistike.jsp";}
     </script><br>
 </body>
 </html>

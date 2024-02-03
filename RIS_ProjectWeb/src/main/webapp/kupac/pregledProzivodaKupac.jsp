@@ -31,7 +31,7 @@
 						<td>${p.cena }</td>
 					</c:if>
 					<c:if test="${!empty p.popust}">
-						<td>${p.cena -  (p.cena / p.popust.procenat)}</td>
+						<td>${p.cena -  ((p.cena / 100) * p.popust.procenat)}</td>
 					</c:if>
 					<c:if test="${!empty p.popust}">
 						<th>${p.popust.procenat } %</th>
@@ -47,7 +47,7 @@
 	<br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>
-        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}//dodaj ostalima ovo
+        function goToIndex() {window.location.href = "/Prodavnica/kupac/kupacPage.jsp";}//dodaj ostalima ovo
     </script>
 </body>
 </html>

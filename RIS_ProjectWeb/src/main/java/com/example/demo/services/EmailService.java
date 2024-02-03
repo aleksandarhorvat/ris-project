@@ -31,7 +31,7 @@ public class EmailService {
 		            JasperExportManager.exportReportToPdfStream(jasperReport, baos);
 
 		            ByteArrayDataSource dataSource = new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
-		            helper.addAttachment("zaduzenjaZaKnjige.pdf", dataSource);
+		            helper.addAttachment("racun.pdf", dataSource);
         		    javaMailSender.send(message);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

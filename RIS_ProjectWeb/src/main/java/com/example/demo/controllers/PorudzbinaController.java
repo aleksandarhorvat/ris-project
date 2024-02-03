@@ -75,7 +75,7 @@ public class PorudzbinaController {
     public String getPorudzbina(HttpServletRequest request, @AuthenticationPrincipal UserDetails userDetails) {
 	    Korisnik trenutniKorisnik = kr.findByUsername(userDetails.getUsername());
 	    if(trenutniKorisnik.getPorudzbina() == null)
-	    	return "kupacPage";
+	    	return "kupac/kupacPage";
 	    Porudzbina p = pr.getReferenceById(trenutniKorisnik.getUsername());
 		List<PorudzbinaHasProizvod> porudzbina = phpr.getPorudzbinaZaKorisnika(trenutniKorisnik.getUsername());
 		List<Proizvod> proizvodi = new ArrayList<>();
@@ -87,31 +87,31 @@ public class PorudzbinaController {
 		request.setAttribute("proizvodi", proizvodi);
 		request.setAttribute("kolicine", kolicine);
 		request.setAttribute("porudzbinaPrikaz", p);
-		return "porudzbina";
+		return "kupac/porudzbina";
     }
 	
     @GetMapping("getPorudzbinePoDanimaPage")
     public String getPorudzbinePoDanimaPage() {
-		return "porudzbinePoDanima";
+		return "admin/statistika/porudzbinePoDanima";
     }
     
 	@GetMapping("getPorudzbine")
 	public String getPorudzbine(Date datumNarucivanja, HttpServletRequest request) {
 		List<Porudzbina> porudzbine = pr.getPorudzbineDatumNarucivanja(datumNarucivanja);
 		request.setAttribute("brojPorudzbina", porudzbine.size());
-		return "porudzbinePoDanima";
+		return "admin/statistika/porudzbinePoDanima";
 	}
     
     @GetMapping("getPromenaStatusPorudzbinePage")
     public String getPromenaStatusaPorudzbinePage() {
-		return "promenaStatusPorudzbine";
+		return "admin/promenaStatusPorudzbine";
     }
 	
 	@GetMapping("getPorudzbinu")
 	public String getPorudzbinu(@RequestParam("idK")String username, HttpServletRequest request) {
 		Porudzbina p = pr.getPorudzbinaKorisnika(username);
 		request.setAttribute("proudzbinaIzmena", p);
-		return "promenaStatusPorudzbine";
+		return "admin/promenaStatusPorudzbine";
 	}
     
     @PostMapping("changeStatus")
@@ -128,7 +128,7 @@ public class PorudzbinaController {
 			poruka += "Greska prilikom menjanja statusa porudzbine!";
 		}
 		request.setAttribute("porukaPorudzbina", poruka);
-        return "promenaStatusPorudzbine";
+        return "admin/promenaStatusPorudzbine";
     }
 	
 }

@@ -35,7 +35,7 @@ public class KarticaController {
     
 	@GetMapping("getKartica")
 	public String getKartica() {
-		return "kartica";
+		return "kupac/kartica";
 	}
 	
 	@ModelAttribute("kartica")
@@ -76,7 +76,7 @@ public class KarticaController {
 	    
 	    request.setAttribute("porukaKartica", poruka);
 	    
-	    return "kartica";
+	    return "kupac/kartica";
 	}
 
 

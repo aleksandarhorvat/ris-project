@@ -41,9 +41,9 @@ public class LoginController {
     
     @GetMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
-        if (request.isUserInRole("ROLE_ADMINISTRATOR")) {
-            return "adminPage";
+        if (request.isUserInRole("ADMINISTRATOR")) {
+            return "admin/adminPage";
         }
-        return "kupacPage";
+        return "kupac/kupacPage";
     }
 }

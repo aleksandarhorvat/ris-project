@@ -15,7 +15,7 @@
 	<a href="/Prodavnica/proizvodjac/getDodajProizvodjacaPage">Dodaj proizvodjaca</a><br>
 	<a href="/Prodavnica/proizvodjac/getProizvodjaciPage">Pogledaj proizvodjace</a><br><br>
 	<a href="/Prodavnica/porudzbina/getPromenaStatusPorudzbinePage">Promeni status porudzbina</a><br><br>
-	<a href="/Prodavnica/pregledStatistike.jsp">Pregled statistike</a><br><br>
+	<a href="/Prodavnica/admin/statistika/pregledStatistike.jsp">Pregled statistike</a><br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>
         function goToIndex() {window.location.href = "/Prodavnica";}

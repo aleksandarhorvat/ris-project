@@ -27,7 +27,7 @@
 						<td>${p.cena }</td>
 					</c:if>
 					<c:if test="${!empty p.popust}">
-						<td>${p.cena -  (p.cena / p.popust.procenat)}</td>
+						<td>${p.cena -  ((p.cena / 100) * p.popust.procenat)}</td>
 					</c:if>
 					<td>${kolicine[status.index] }</td>
 				</tr>
@@ -39,7 +39,7 @@
 		Status narudzbine: ${porudzbinaPrikaz.status }<br><br>
 	<button onclick="goToIndex()">Vrati se na pocetnu stranu</button>
     <script>
-        function goToIndex() {window.location.href = "/Prodavnica/kupacPage.jsp";}
+        function goToIndex() {window.location.href = "/Prodavnica/kupac/kupacPage.jsp";}
     </script>
 </body>
 </html>

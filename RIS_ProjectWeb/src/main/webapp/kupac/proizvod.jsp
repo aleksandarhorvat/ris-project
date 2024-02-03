@@ -30,7 +30,7 @@
 				<td>${proizvod.cena }</td>
 			</c:if>
 			<c:if test="${!empty proizvod.popust}">
-				<td>${proizvod.cena -  (proizvod.cena / proizvod.popust.procenat)}</td>
+				<td>${proizvod.cena -  ((proizvod.cena / 100) * proizvod.popust.procenat)}</td>
 			</c:if>
 			<td>${proizvod.opis }</td>
 			<td>${proizvod.kategorija.naziv }</td>
