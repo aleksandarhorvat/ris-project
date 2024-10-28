@@ -10,6 +10,6 @@ import model.PorudzbinaHasProizvod;
 import model.PorudzbinaHasProizvodPK;
 
 public interface PorudzbinaHasProizvodRepository extends JpaRepository<PorudzbinaHasProizvod, PorudzbinaHasProizvodPK>{
-	@Query("select p from PorudzbinaHasProizvod p where p.id.porudzbina_Korisnik_username = :idK")
+	@Query("select p from PorudzbinaHasProizvod p where p.id.porudzbina_korisnik_username = :idK")
 	List<PorudzbinaHasProizvod> getPorudzbinaZaKorisnika(@Param("idK")String user);
 }

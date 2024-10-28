@@ -15,7 +15,6 @@ public class Korisnik implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String username;
 
 	private String adresa;
@@ -27,7 +26,7 @@ public class Korisnik implements Serializable {
 	private String prezime;
 
 	//bi-directional many-to-one association to Kartica
-	@OneToMany(mappedBy="korisnik", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="korisnik")
 	private List<Kartica> karticas;
 
 	//bi-directional many-to-one association to Uloga
@@ -35,11 +34,11 @@ public class Korisnik implements Serializable {
 	private Uloga uloga;
 
 	//bi-directional many-to-one association to Ocena
-	@OneToMany(mappedBy="korisnik", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="korisnik")
 	private List<Ocena> ocenas;
 
 	//bi-directional many-to-one association to Omiljeno
-	@OneToMany(mappedBy="korisnik", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="korisnik")
 	private List<Omiljeno> omiljenos;
 
 	//bi-directional one-to-one association to Porudzbina

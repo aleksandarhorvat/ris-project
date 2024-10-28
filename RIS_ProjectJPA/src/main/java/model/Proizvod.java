@@ -2,8 +2,6 @@ package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
-
-import java.util.Base64;
 import java.util.List;
 
 
@@ -30,15 +28,15 @@ public class Proizvod implements Serializable {
 	private byte[] slika;
 
 	//bi-directional many-to-one association to Ocena
-	@OneToMany(mappedBy="proizvod", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="proizvod")
 	private List<Ocena> ocenas;
 
 	//bi-directional many-to-one association to Omiljeno
-	@OneToMany(mappedBy="proizvod", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="proizvod")
 	private List<Omiljeno> omiljenos;
 
 	//bi-directional many-to-one association to PorudzbinaHasProizvod
-	@OneToMany(mappedBy="proizvod", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="proizvod")
 	private List<PorudzbinaHasProizvod> porudzbinaHasProizvods;
 
 	//bi-directional many-to-one association to Kategorija
@@ -96,13 +94,6 @@ public class Proizvod implements Serializable {
 		this.slika = slika;
 	}
 
-	public String getSlikaAsBase64() {
-	    if (this.slika != null && this.slika.length > 0) {
-	        return Base64.getEncoder().encodeToString(this.slika);
-	    }
-	    return null;
-	}
-	
 	public List<Ocena> getOcenas() {
 		return this.ocenas;
 	}

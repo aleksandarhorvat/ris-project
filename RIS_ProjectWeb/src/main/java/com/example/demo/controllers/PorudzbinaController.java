@@ -117,7 +117,7 @@ public class PorudzbinaController {
     @PostMapping("changeStatus")
     public String changeStatus(@ModelAttribute("porudzbina") Porudzbina porudzbina, HttpServletRequest request) {
 		String poruka = "";
-		Porudzbina p = pr.getReferenceById(porudzbina.getKorisnik_username());
+		Porudzbina p = pr.getReferenceById(porudzbina.getKorisnik().getUsername());
 		try {
 			if(!porudzbina.getStatus().equals("") && !p.getStatus().equals(porudzbina.getStatus())) {
 				p.setStatus(porudzbina.getStatus());

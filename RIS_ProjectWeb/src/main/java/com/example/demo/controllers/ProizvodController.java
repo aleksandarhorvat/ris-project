@@ -225,13 +225,13 @@ public class ProizvodController {
     	        porudzbina.setDatumIsporuke(oneWeekLater);
     	        porudzbina.setStatus("Naruceno");
     	        
-    	        porudzbina.setKorisnik_username(trenutniKorisnik.getUsername());
+    	        porudzbina.setKorisnik(trenutniKorisnik);
     		}else {
     			porudzbina = trenutniKorisnik.getPorudzbina();
     		}
 			por.save(porudzbina);
 			PorudzbinaHasProizvodPK phpk = new PorudzbinaHasProizvodPK();
-			phpk.setPorudzbina_Korisnik_username(trenutniKorisnik.getUsername());
+			phpk.setPorudzbina_korisnik_username(trenutniKorisnik.getUsername());
 			phpk.setProizvod_idProizvod(p.getIdProizvod());
 			
 			PorudzbinaHasProizvod php = new PorudzbinaHasProizvod();
@@ -253,9 +253,9 @@ public class ProizvodController {
     	}
     	else {
 			Porudzbina porudzbina = new Porudzbina();
-    	    porudzbina.setKorisnik_username(trenutniKorisnik.getUsername());
+    	    porudzbina.setKorisnik(trenutniKorisnik);
 			PorudzbinaHasProizvodPK phpk = new PorudzbinaHasProizvodPK();
-			phpk.setPorudzbina_Korisnik_username(trenutniKorisnik.getUsername());
+			phpk.setPorudzbina_korisnik_username(trenutniKorisnik.getUsername());
 			phpk.setProizvod_idProizvod(p.getIdProizvod());
 			
 			PorudzbinaHasProizvod php = new PorudzbinaHasProizvod();

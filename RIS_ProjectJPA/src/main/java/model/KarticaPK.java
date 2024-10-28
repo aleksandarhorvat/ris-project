@@ -12,23 +12,17 @@ public class KarticaPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false)
-	private String korisnik_username;
-
 	private int brojKartice;
-
-	private int cvv;
 
 	@Temporal(TemporalType.DATE)
 	private java.util.Date datumIsticanja;
 
+	private int cvv;
+
+	@Column(insertable=false, updatable=false)
+	private String korisnik_username;
+
 	public KarticaPK() {
-	}
-	public String getKorisnik_username() {
-		return this.korisnik_username;
-	}
-	public void setKorisnik_username(String korisnik_username) {
-		this.korisnik_username = korisnik_username;
 	}
 	public int getBrojKartice() {
 		return this.brojKartice;
@@ -36,17 +30,23 @@ public class KarticaPK implements Serializable {
 	public void setBrojKartice(int brojKartice) {
 		this.brojKartice = brojKartice;
 	}
+	public java.util.Date getDatumIsticanja() {
+		return this.datumIsticanja;
+	}
+	public void setDatumIsticanja(java.util.Date datumIsticanja) {
+		this.datumIsticanja = datumIsticanja;
+	}
 	public int getCvv() {
 		return this.cvv;
 	}
 	public void setCvv(int cvv) {
 		this.cvv = cvv;
 	}
-	public java.util.Date getDatumIsticanja() {
-		return this.datumIsticanja;
+	public String getKorisnik_username() {
+		return this.korisnik_username;
 	}
-	public void setDatumIsticanja(java.util.Date datumIsticanja) {
-		this.datumIsticanja = datumIsticanja;
+	public void setKorisnik_username(String korisnik_username) {
+		this.korisnik_username = korisnik_username;
 	}
 
 	public boolean equals(Object other) {
@@ -58,19 +58,19 @@ public class KarticaPK implements Serializable {
 		}
 		KarticaPK castOther = (KarticaPK)other;
 		return 
-			this.korisnik_username.equals(castOther.korisnik_username)
-			&& (this.brojKartice == castOther.brojKartice)
+			(this.brojKartice == castOther.brojKartice)
+			&& this.datumIsticanja.equals(castOther.datumIsticanja)
 			&& (this.cvv == castOther.cvv)
-			&& this.datumIsticanja.equals(castOther.datumIsticanja);
+			&& this.korisnik_username.equals(castOther.korisnik_username);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.korisnik_username.hashCode();
 		hash = hash * prime + this.brojKartice;
-		hash = hash * prime + this.cvv;
 		hash = hash * prime + this.datumIsticanja.hashCode();
+		hash = hash * prime + this.cvv;
+		hash = hash * prime + this.korisnik_username.hashCode();
 		
 		return hash;
 	}

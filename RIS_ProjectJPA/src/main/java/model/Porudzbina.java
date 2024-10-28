@@ -2,8 +2,6 @@ package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +16,9 @@ public class Porudzbina implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(insertable=false, updatable=false)
-	private String korisnik_username;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="korisnik_username")
+	private String korisnikUsername;
 
 	@Temporal(TemporalType.DATE)
 	private Date datumIsporuke;
@@ -31,23 +30,22 @@ public class Porudzbina implements Serializable {
 
 	//bi-directional one-to-one association to Korisnik
 	@OneToOne
-	@JoinColumn(name = "korisnik_username", insertable = false, updatable = false)
+	@PrimaryKeyJoinColumn
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to PorudzbinaHasProizvod
-	@OneToMany(mappedBy="porudzbina", fetch = FetchType.EAGER/*, cascade = {CascadeType.PERSIST, CascadeType.MERGE}*/)
+	@OneToMany(mappedBy="porudzbina")
 	private List<PorudzbinaHasProizvod> porudzbinaHasProizvods;
 
 	public Porudzbina() {
-		this.porudzbinaHasProizvods = new ArrayList<>();
 	}
 
-	public String getKorisnik_username() {
-		return this.korisnik_username;
+	public String getKorisnikUsername() {
+		return this.korisnikUsername;
 	}
 
-	public void setKorisnik_username(String korisnik_username) {
-		this.korisnik_username = korisnik_username;
+	public void setKorisnikUsername(String korisnikUsername) {
+		this.korisnikUsername = korisnikUsername;
 	}
 
 	public Date getDatumIsporuke() {

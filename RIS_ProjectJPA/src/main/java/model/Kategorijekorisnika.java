@@ -21,7 +21,7 @@ public class Kategorijekorisnika implements Serializable {
 	private String naziv;
 
 	//bi-directional many-to-one association to Omiljeno
-	@OneToMany(mappedBy="kategorijekorisnika", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="kategorijekorisnika")
 	private List<Omiljeno> omiljenos;
 
 	public Kategorijekorisnika() {

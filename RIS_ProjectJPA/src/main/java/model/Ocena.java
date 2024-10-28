@@ -19,13 +19,11 @@ public class Ocena implements Serializable {
 	private int ocena;
 
 	//bi-directional many-to-one association to Korisnik
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "korisnik_username", insertable = false, updatable = false)
+	@ManyToOne
 	private Korisnik korisnik;
 
 	//bi-directional many-to-one association to Proizvod
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "proizvod_idProizvod", insertable = false, updatable = false)
+	@ManyToOne
 	private Proizvod proizvod;
 
 	public Ocena() {

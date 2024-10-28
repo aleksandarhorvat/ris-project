@@ -14,7 +14,7 @@ public interface PorudzbinaRepository extends JpaRepository<Porudzbina, String>{
 	@Query("select p from Porudzbina p where p.datumNarucivanja = :dateN")
 	List<Porudzbina> getPorudzbineDatumNarucivanja(@Param("dateN")Date datumNarucivanja);
 	
-	@Query("select p from Porudzbina p where p.korisnik_username = :idK")
+	@Query("select p from Porudzbina p where p.korisnik = :idK")
 	Porudzbina getPorudzbinaKorisnika(@Param("idK")String username);
 	
 }

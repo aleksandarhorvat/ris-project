@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ris_projectdatabase`.`Korisnik` (
   `prezime` VARCHAR(45) NOT NULL,
   `adresa` VARCHAR(45) NOT NULL,
   `Uloga_idUloga` INT NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`username`),
   INDEX `fk_Korisnik_Uloga_idx` (`Uloga_idUloga` ASC) VISIBLE,
   CONSTRAINT `fk_Korisnik_Uloga`

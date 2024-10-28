@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-
 import jakarta.persistence.*;
 
 
@@ -21,13 +20,11 @@ public class PorudzbinaHasProizvod implements Serializable {
 	private int kolicina;
 
 	//bi-directional many-to-one association to Porudzbina
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "porudzbina_Korisnik_username", insertable = false, updatable = false)
+	@ManyToOne
 	private Porudzbina porudzbina;
 
 	//bi-directional many-to-one association to Proizvod
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "proizvod_idProizvod", insertable = false, updatable = false)
+	@ManyToOne
 	private Proizvod proizvod;
 
 	public PorudzbinaHasProizvod() {
