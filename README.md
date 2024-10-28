@@ -10,7 +10,7 @@ This Spring Boot application is developed as part of the "Development of Informa
 
 ## EER Diagram
 
-![EER Diagram](.\resources\model.png "EER Diagram")
+![EER Diagram](./resources/model.png "EER Diagram")
 
 ## Database Setup
 
